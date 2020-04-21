@@ -1,0 +1,10 @@
+{
+  "snapshotSerializers": [
+    "enzyme-to-json/serializer"
+  ],
+  "setupFiles": ["./setupJest.js"],
+  "moduleFileExtensions": ["js", "json"],
+  "testPathIgnorePatterns": ["/node_modules/", "/coverage/"],
+  "coverageDirectory": "./coverage/",
+  "collectCoverage": true
+}
