@@ -12,3 +12,4 @@ export default Index
 
 // feature A
 // feature B
+// hotfix (without feature C)
