@@ -1,5 +1,11 @@
 name: Deploy Staging CI/CD
 
+env:
+  S3_BUCKET: next-ebs-staging
+  EB_APPLICATION_NAME: next-ebs
+  EB_ENVIRONMENT_NAME: NextEbs-Staging
+  AWS_REGION: ap-southeast-1
+
 on:
   pull_request:
     types: [ labeled ]
@@ -17,6 +23,32 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
-    - run: npm ci
-    - run: npm run build
-    - run: npm test
+
+    - name: Install Dependencies
+      run: npm ci
+
+    - name: Run build
+      run: npm run build
+
+    - name: Run test
+      run: npm test
+
+    - name: Upload Built Artifact
+      uses: actions/upload-artifact@master
+      with:
+        name: built artifacts
+        path: build
+
+  cd:
+    needs: ci
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Download Built Artifact
+        uses: actions/download-artifact@master
+        with:
+          name: built artifacts
+          path: build
