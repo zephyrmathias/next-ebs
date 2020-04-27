@@ -10,7 +10,7 @@ build: ## Compile the code, build files
 
 upload-assets: ## Upload assets to CDN Bucket
 	@aws s3 sync ./.next s3://$(CDN_BUCKET)/_next
-	@aws s3 sync ./static s3://$(CDN_BUCKET)/public
+	@aws s3 sync ./src/public s3://$(CDN_BUCKET)/public
 
 zip-file: ## Zip files
 	@zip -r $(DEPLOY_PKG_NAME) . -x **/.git/**/*
