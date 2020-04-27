@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/zephyrmathias/next-ebs/compare/v1.3.3...v1.3.4) (2020-04-27)
+
+
+### Bug Fixes
+
+* workflow ([caf2f1f](https://github.com/zephyrmathias/next-ebs/commit/caf2f1f20fd38eea2c4560e3fa9792982750aa5a))
+
 ## [1.3.3](https://github.com/zephyrmathias/next-ebs/compare/v1.3.2...v1.3.3) (2020-04-27)
 
 
