@@ -1,3 +1,10 @@
+## [1.3.5](https://github.com/zephyrmathias/next-ebs/compare/v1.3.4...v1.3.5) (2020-04-27)
+
+
+### Bug Fixes
+
+* test env ([681753a](https://github.com/zephyrmathias/next-ebs/commit/681753a920c630196809a7c50c8c7b0add0e341b))
+
 ## [1.3.4](https://github.com/zephyrmathias/next-ebs/compare/v1.3.3...v1.3.4) (2020-04-27)
 
 
