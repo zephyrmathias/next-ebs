@@ -4,13 +4,9 @@ function Index() {
   return (
     <div>
       <h1>Homepage</h1>
+      <div>Feat</div>
     </div>
   )
 }
 
 export default Index
-
-// feature A
-// feature B
-// feature C
-// feature D
