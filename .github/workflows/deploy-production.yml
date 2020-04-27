@@ -31,6 +31,8 @@ jobs:
       run: make build
 
     - name: Run test
+      env:
+       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       run: make test
 
     - name: Upload Built Artifact
