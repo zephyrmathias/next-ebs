@@ -64,7 +64,17 @@ jobs:
         run: aws s3 cp --recursive ./.next s3://next-ebs-cdn-staging
     
       - name: Zip built files
-        run: zip -r www-staging-${{ github.sha }}.zip . -x **/.git/**/* **/node_modules/**/
+        run: zip -r staging-${{ github.sha }}.zip . -x **/.git/**/* **/node_modules/**/
       
       - name: Upload Zip file to S3
-        run: aws s3 cp www-staging-${{ github.sha }}.zip s3://next-ebs-staging
+        run: aws s3 cp staging-${{ github.sha }}.zip s3://next-ebs-staging
+
+      - name: Create Benstalk Application Version
+        run: aws elasticbeanstalk create-application-version \
+             --application-name "next-ebs" \
+             --source-bundle S3Bucket="next-ebs-staging/staging",S3Key="staging-${{ github.sha }}.zip" \
+             --version-label "staging-${{ github.sha }}.zip" \
+             --description "staging-${{ github.sha }}.zip"
+
+      - name: Deploy to Staging
+        run: aws elasticbeanstalk update-environment --environment-name NextEbs-Staging --version-label staging-${{ github.sha }}.zip
