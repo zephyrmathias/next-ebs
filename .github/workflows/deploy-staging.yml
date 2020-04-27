@@ -52,3 +52,19 @@ jobs:
         with:
           name: built artifacts
           path: .next
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-southeast-1
+          
+      - name: Upload assets to S3 Bucket (CDN)
+        run: aws s3 cp --recursive ./next s3://next-ebs-cdn-staging
+    
+      - name: Zip built files
+        run: zip -r www-staging-${{ github.sha }}.zip . -x **/.git/**/* **/node_modules/**/
+      
+      - name: Upload Zip file to S3
+        run: aws s3 cp www-staging-${{ github.sha }}.zip s3://next-ebs-staging
