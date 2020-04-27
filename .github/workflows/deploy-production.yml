@@ -28,10 +28,10 @@ jobs:
       run: npm ci
 
     - name: Run build
-      run: npm run build
+      run: make build
 
     - name: Run test
-      run: npm test
+      run: make test
 
     - name: Upload Built Artifact
       uses: actions/upload-artifact@master
@@ -62,22 +62,22 @@ jobs:
           
       - name: Upload assets to S3 Bucket (CDN)
         run: |
-          aws s3 sync ./.next s3://${{ env.CDN_S3_BUCKET }}/_next
-          aws s3 sync ./src/public s3://${{ env.CDN_S3_BUCKET }}/public
+          make CDN_BUCKET=${{ env.CDN_S3_BUCKET }} upload-assets
     
       - name: Zip built files
-        run: zip -r ${{ env.ZIP_FILE }} . -x **/.git/**/* **/node_modules/**/
+        run: make DEPLOY_PKG_NAME=${{ env.ZIP_FILE }} zip-file
       
       - name: Upload Zip file to S3
-        run: aws s3 cp ${{ env.ZIP_FILE }} s3://${{ env.S3_BUCKET }}/production/
+        run: make DEPLOY_PKG_NAME=${{ env.ZIP_FILE }} APP_S3_BUCKET=${{ env.S3_BUCKET }}/production/ upload-zip-file
 
       - name: Create new Elastic Beanstalk Application Version
         run: |
-          aws elasticbeanstalk create-application-version \
-          --application-name ${{ env.EB_APPLICATION_NAME }} \
-          --source-bundle S3Bucket=${{ env.S3_BUCKET }},S3Key="production/${{ env.ZIP_FILE }}" \
-          --version-label ${{ env.ZIP_FILE }} \
-          --description "description ${{ env.ZIP_FILE }}"
+          make \
+          EB_APPLICATION_NAME=${{ env.EB_APPLICATION_NAME }} \
+          APP_S3_BUCKET=${{ env.S3_BUCKET }} \
+          S3_KEY=production/${{ env.ZIP_FILE }} \
+          DEPLOY_PKG_NAME=${{ env.ZIP_FILE }} \
+          create-app-version
  
       - name: Deploy to Production
-        run: aws elasticbeanstalk update-environment --environment-name ${{ env.EB_ENVIRONMENT_NAME }} --version-label production-${{ github.sha }}.zip
+        run: make EB_ENV_NAME=${{ env.EB_ENVIRONMENT_NAME }} DEPLOY_PKG_NAME=${{ env.env.ZIP_FILE }} deploy
