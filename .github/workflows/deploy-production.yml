@@ -8,7 +8,7 @@ env:
   EB_ENVIRONMENT_NAME: NextEbs-Prod
   AWS_REGION: ap-southeast-1
   ZIP_FILE: production-${{ github.sha }}.zip
-  S3_KEY: production/${{ env.DEPLOY_PKG_NAME }}
+  S3_KEY_PREFIX: production
 
 on:
   release:
@@ -79,7 +79,7 @@ jobs:
           make \
           EB_APPLICATION_NAME=${{ env.EB_APPLICATION_NAME }} \
           APP_S3_BUCKET=${{ env.S3_BUCKET }} \
-          S3_KEY=${{ env.S3_KEY }} \
+          S3_KEY=${{ env.S3_KEY_PREFIX }}/${{ env.ZIP_FILE }} \
           DEPLOY_PKG_NAME=${{ env.ZIP_FILE }} \
           create-app-version
  
