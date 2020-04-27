@@ -62,14 +62,14 @@ jobs:
           
       - name: Upload assets to S3 Bucket (CDN)
         run: |
-          aws s3 cp --recursive ./.next/ s3://next-ebs-cdn-staging/_next/
-          aws s3 cp --recursive ./static/ s3://next-ebs-cdn-staging/
+          aws s3 sync ./.next s3://next-ebs-cdn-staging/_next
+          aws s3 sync ./src/public s3://next-ebs-cdn-staging/public
     
       - name: Zip built files
         run: zip -r staging-${{ github.sha }}.zip . -x **/.git/**/* **/node_modules/**/
       
       - name: Upload Zip file to S3
-        run: aws s3 cp staging-${{ github.sha }}.zip s3://next-ebs/staging/
+        run: aws s3 sync staging-${{ github.sha }}.zip s3://next-ebs/staging/
 
       - name: Create new Elastic Beanstalk Application Version
         run: |
