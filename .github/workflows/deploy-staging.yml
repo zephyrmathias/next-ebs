@@ -75,7 +75,7 @@ jobs:
         run: |
           aws elasticbeanstalk create-application-version \
           --application-name ${{ env.EB_APPLICATION_NAME }} \
-          --source-bundle S3Bucket="next-ebs/staging",S3Key="staging-${{ github.sha }}.zip" \
+          --source-bundle S3Bucket="next-ebs",S3Key="staging/staging-${{ github.sha }}.zip" \
           --version-label "staging-${{ github.sha }}.zip" \
           --description "staging-${{ github.sha }}.zip"
  
