@@ -67,7 +67,7 @@ jobs:
         run: zip -r staging-${{ github.sha }}.zip . -x **/.git/**/* **/node_modules/**/
       
       - name: Upload Zip file to S3
-        run: aws s3 cp staging-${{ github.sha }}.zip s3://next-ebs-staging
+        run: aws s3 cp staging-${{ github.sha }}.zip s3://next-ebs-staging/staging
 
       - name: Create Benstalk Application Version
         run: aws elasticbeanstalk create-application-version \
