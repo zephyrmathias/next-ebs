@@ -3,10 +3,12 @@ name: Deploy Production CI/CD
 env:
   CDN_S3_BUCKET: next-ebs-cdn
   S3_BUCKET: next-ebs
+  APP_S3_BUCKET: next-ebs/production/
   EB_APPLICATION_NAME: next-ebs
   EB_ENVIRONMENT_NAME: NextEbs-Prod
   AWS_REGION: ap-southeast-1
   ZIP_FILE: production-${{ github.sha }}.zip
+  S3_KEY: production/${{ env.DEPLOY_PKG_NAME }}
 
 on:
   release:
@@ -70,14 +72,14 @@ jobs:
         run: make DEPLOY_PKG_NAME=${{ env.ZIP_FILE }} zip-file
       
       - name: Upload Zip file to S3
-        run: make DEPLOY_PKG_NAME=${{ env.ZIP_FILE }} APP_S3_BUCKET=${{ env.S3_BUCKET }}/production/ upload-zip-file
+        run: make DEPLOY_PKG_NAME=${{ env.ZIP_FILE }} APP_S3_BUCKET=${{ env.APP_S3_BUCKET }} upload-zip-file
 
       - name: Create new Elastic Beanstalk Application Version
         run: |
           make \
           EB_APPLICATION_NAME=${{ env.EB_APPLICATION_NAME }} \
           APP_S3_BUCKET=${{ env.S3_BUCKET }} \
-          S3_KEY=production/${{ env.ZIP_FILE }} \
+          S3_KEY=${{ env.S3_KEY }} \
           DEPLOY_PKG_NAME=${{ env.ZIP_FILE }} \
           create-app-version
  
