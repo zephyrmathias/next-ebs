@@ -8,8 +8,8 @@ env:
 
 on:
   pull_request:
-    types: [ labeled ]
-    branches: [ master ]
+    types: [labeled]
+    branches: [master]
 
 jobs:
   ci:
@@ -37,7 +37,7 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: built artifacts
-        path: build
+        path: .next
 
   cd:
     needs: ci
@@ -51,4 +51,4 @@ jobs:
         uses: actions/download-artifact@master
         with:
           name: built artifacts
-          path: build
+          path: .next
