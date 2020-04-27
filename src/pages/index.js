@@ -4,7 +4,7 @@ function Index() {
   return (
     <div>
       <h1>Homepage</h1>
-      <div>Feat v.2</div>
+      <div>Feat v.222</div>
     </div>
   )
 }
