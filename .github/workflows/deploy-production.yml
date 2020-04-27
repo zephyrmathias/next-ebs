@@ -82,4 +82,4 @@ jobs:
           create-app-version
  
       - name: Deploy to Production
-        run: make EB_ENV_NAME=${{ env.EB_ENVIRONMENT_NAME }} DEPLOY_PKG_NAME=${{ env.env.ZIP_FILE }} deploy
+        run: make EB_ENV_NAME=${{ env.EB_ENVIRONMENT_NAME }} DEPLOY_PKG_NAME=${{ env.ZIP_FILE }} deploy
