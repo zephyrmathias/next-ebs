@@ -1,10 +1,12 @@
 name: Deploy Staging CI/CD
 
 env:
-  S3_BUCKET: next-ebs/staging
+  CDN_S3_BUCKET: next-ebs-cdn-staging
+  S3_BUCKET: next-ebs
   EB_APPLICATION_NAME: next-ebs
   EB_ENVIRONMENT_NAME: NextEbs-Staging
   AWS_REGION: ap-southeast-1
+  ZIP_FILE: staging-${{ github.sha }}.zip
 
 on:
   pull_request:
@@ -56,28 +58,28 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-southeast-1
+          aws-access-key-id:      ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region:             ${{ env.AWS_REGION }}
           
       - name: Upload assets to S3 Bucket (CDN)
         run: |
-          aws s3 sync ./.next s3://next-ebs-cdn-staging/_next
-          aws s3 sync ./src/public s3://next-ebs-cdn-staging/public
+          aws s3 sync ./.next s3://${{ env.CDN_S3_BUCKET }}/_next
+          aws s3 sync ./src/public s3://${{ env.CDN_S3_BUCKET }}/public
     
       - name: Zip built files
-        run: zip -r staging-${{ github.sha }}.zip . -x **/.git/**/* **/node_modules/**/
+        run: zip -r ${{ env.ZIP_FILE }} . -x **/.git/**/* **/node_modules/**/
       
       - name: Upload Zip file to S3
-        run: aws s3 cp staging-${{ github.sha }}.zip s3://next-ebs/staging/
+        run: aws s3 cp ${{ env.ZIP_FILE }} s3://${{ env.S3_BUCKET }}/staging/
 
       - name: Create new Elastic Beanstalk Application Version
         run: |
           aws elasticbeanstalk create-application-version \
           --application-name ${{ env.EB_APPLICATION_NAME }} \
-          --source-bundle S3Bucket="next-ebs",S3Key="staging/staging-${{ github.sha }}.zip" \
-          --version-label "staging-${{ github.sha }}.zip" \
-          --description "staging-${{ github.sha }}.zip"
+          --source-bundle S3Bucket=${{ env.S3_BUCKET }},S3Key="staging/${{ env.ZIP_FILE }}" \
+          --version-label ${{ env.ZIP_FILE }} \
+          --description "description ${{ env.ZIP_FILE }}"
  
       - name: Deploy to Staging
         run: aws elasticbeanstalk update-environment --environment-name NextEbs-Staging --version-label staging-${{ github.sha }}.zip
