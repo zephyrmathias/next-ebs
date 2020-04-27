@@ -1,7 +1,7 @@
 name: Deploy Staging CI/CD
 
 env:
-  S3_BUCKET: next-ebs/staging
+  S3_BUCKET: next-ebs/staging/
   EB_APPLICATION_NAME: next-ebs
   EB_ENVIRONMENT_NAME: NextEbs-Staging
   AWS_REGION: ap-southeast-1
@@ -67,13 +67,13 @@ jobs:
         run: zip -r staging-${{ github.sha }}.zip . -x **/.git/**/* **/node_modules/**/
       
       - name: Upload Zip file to S3
-        run: aws s3 cp staging-${{ github.sha }}.zip s3://next-ebs/staging
+        run: aws s3 cp staging-${{ github.sha }}.zip s3://next-ebs/staging/
 
       - name: Create new Elastic Beanstalk Application Version
         run: |
           aws elasticbeanstalk create-application-version \
           --application-name ${{ env.EB_APPLICATION_NAME }} \
-          --source-bundle S3Bucket="next-ebs/staging",S3Key="staging-${{ github.sha }}.zip" \
+          --source-bundle S3Bucket="next-ebs/staging/",S3Key="staging-${{ github.sha }}.zip" \
           --version-label "staging-${{ github.sha }}.zip" \
           --description "staging-${{ github.sha }}.zip"
  
