@@ -3,7 +3,7 @@ name: Deploy Staging CI/CD
 env:
   CDN_S3_BUCKET: next-ebs-cdn-staging
   S3_BUCKET: next-ebs
-  EB_APPLICATION_NAME: next-ebs
+  EB_APPLICATION_NAME: "test whitespace"
   EB_ENVIRONMENT_NAME: NextEbs-Staging
   AWS_REGION: ap-southeast-1
   ZIP_FILE: staging-${{ github.sha }}.zip
@@ -20,26 +20,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js version 12.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12.x
+      - uses: actions/checkout@v2
+      - name: Use Node.js version 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
 
-    - name: Install Dependencies
-      run: npm ci
+      - name: Install Dependencies
+        run: npm ci
 
-    - name: Run build
-      run: npm run build
+      - name: Run build
+        run: npm run build
 
-    - name: Run test
-      run: npm test
+      - name: Run test
+        run: npm test
 
-    - name: Upload Built Artifact
-      uses: actions/upload-artifact@master
-      with:
-        name: built artifacts
-        path: .next
+      - name: Upload Built Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: built artifacts
+          path: .next
 
   cd:
     needs: ci
@@ -58,18 +58,18 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id:      ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region:             ${{ env.AWS_REGION }}
-          
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
       - name: Upload assets to S3 Bucket (CDN)
         run: |
           aws s3 sync ./.next s3://${{ env.CDN_S3_BUCKET }}/_next
           aws s3 sync ./src/public s3://${{ env.CDN_S3_BUCKET }}/public
-    
+
       - name: Zip built files
         run: zip -r ${{ env.ZIP_FILE }} . -x **/.git/**/* **/node_modules/**/
-      
+
       - name: Upload Zip file to S3
         run: aws s3 cp ${{ env.ZIP_FILE }} s3://${{ env.S3_BUCKET }}/staging/
 
@@ -80,6 +80,6 @@ jobs:
           --source-bundle S3Bucket=${{ env.S3_BUCKET }},S3Key="staging/${{ env.ZIP_FILE }}" \
           --version-label ${{ env.ZIP_FILE }} \
           --description "description ${{ env.ZIP_FILE }}"
- 
+
       - name: Deploy to Staging
         run: aws elasticbeanstalk update-environment --environment-name NextEbs-Staging --version-label staging-${{ github.sha }}.zip
