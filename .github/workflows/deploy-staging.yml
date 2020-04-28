@@ -3,7 +3,7 @@ name: Deploy Staging CI/CD
 env:
   CDN_S3_BUCKET: next-ebs-cdn-staging
   S3_BUCKET: next-ebs
-  EB_APPLICATION_NAME: "test whitespace"
+  EB_APPLICATION_NAME: test whitespace
   EB_ENVIRONMENT_NAME: NextEbs-Staging
   AWS_REGION: ap-southeast-1
   ZIP_FILE: staging-${{ github.sha }}.zip
@@ -76,7 +76,7 @@ jobs:
       - name: Create new Elastic Beanstalk Application Version
         run: |
           aws elasticbeanstalk create-application-version \
-          --application-name ${{ env.EB_APPLICATION_NAME }} \
+          --application-name "${{ env.EB_APPLICATION_NAME }}" \
           --source-bundle S3Bucket=${{ env.S3_BUCKET }},S3Key="staging/${{ env.ZIP_FILE }}" \
           --version-label ${{ env.ZIP_FILE }} \
           --description "description ${{ env.ZIP_FILE }}"
