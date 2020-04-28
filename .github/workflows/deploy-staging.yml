@@ -47,6 +47,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
+
       - name: Download Built Artifact
         uses: actions/download-artifact@master
         with:
