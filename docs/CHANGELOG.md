@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/zephyrmathias/next-ebs/compare/v1.3.6...v1.4.0) (2020-04-28)
+
+
+### Features
+
+* test ([#8](https://github.com/zephyrmathias/next-ebs/issues/8)) ([472edf9](https://github.com/zephyrmathias/next-ebs/commit/472edf925265cece99bf9c770e9f57b641fe989e))
+
 ## [1.3.6](https://github.com/zephyrmathias/next-ebs/compare/v1.3.5...v1.3.6) (2020-04-27)
 
 
