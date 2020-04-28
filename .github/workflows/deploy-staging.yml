@@ -47,8 +47,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-
       - name: Download Built Artifact
         uses: actions/download-artifact@master
         with:
@@ -82,4 +80,4 @@ jobs:
           --description "description ${{ env.ZIP_FILE }}"
 
       - name: Deploy to Staging
-        run: aws elasticbeanstalk update-environment --environment-name NextEbs-Staging --version-label staging-${{ github.sha }}.zip
+        run: aws elasticbeanstalk update-environment --environment-name NextEbs-Staging --version-label ${{ env.ZIP_FILE }}
