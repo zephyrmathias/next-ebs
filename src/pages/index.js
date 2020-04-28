@@ -6,6 +6,7 @@ function Index() {
       <h1>Homepage</h1>
       <div>Feat v.222</div>
       <div>o9sd9ad9a</div>
+      <div>FIX ACTIONS</div>
     </div>
   )
 }
