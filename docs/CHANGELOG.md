@@ -1,3 +1,12 @@
+## [1.4.1](https://github.com/zephyrmathias/next-ebs/compare/v1.4.0...v1.4.1) (2020-04-29)
+
+
+### Bug Fixes
+
+* add github run id ([#13](https://github.com/zephyrmathias/next-ebs/issues/13)) ([484a9d1](https://github.com/zephyrmathias/next-ebs/commit/484a9d1cd8904ba204cb6ae1b9397727dff5ac06))
+* test release ([abe8b25](https://github.com/zephyrmathias/next-ebs/commit/abe8b253c709f918957c8c5b4878308fa46dbc83))
+* test remove semantic npm ([30e4aa8](https://github.com/zephyrmathias/next-ebs/commit/30e4aa8c706a00a4c22d70d64c18052a1490864e))
+
 # [1.4.0](https://github.com/zephyrmathias/next-ebs/compare/v1.3.6...v1.4.0) (2020-04-28)
 
 
