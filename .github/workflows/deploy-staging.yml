@@ -67,6 +67,10 @@ jobs:
           aws s3 sync ./.next s3://${{ env.CDN_S3_BUCKET }}/_next
           aws s3 sync ./src/public s3://${{ env.CDN_S3_BUCKET }}/public
 
+      - name: Create CloudFront Invalidation
+        run: |
+          aws cloudfront create-invalidation --distribution-id E15TQNL6BE9AVI --paths "/_next/static/*"
+
       - name: Zip built files
         run: zip -r ${{ env.ZIP_FILE }} . -x **/.git/**/* **/node_modules/**/
 
