@@ -8,6 +8,7 @@ function Index() {
       <div>o9sd9ad9a</div>
       <div>FIX ACTIONS</div>
       <div>asdsada</div>
+      <div>adsadasda</div>
     </div>
   )
 }
