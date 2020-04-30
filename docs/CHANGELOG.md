@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/zephyrmathias/next-ebs/compare/v1.4.1...v1.4.2) (2020-04-30)
+
+
+### Bug Fixes
+
+* **test:** test package.json version bump ([56076af](https://github.com/zephyrmathias/next-ebs/commit/56076affe9c013ca1853bc31908e1e222e5c9471))
+
 ## [1.4.1](https://github.com/zephyrmathias/next-ebs/compare/v1.4.0...v1.4.1) (2020-04-29)
 
 
