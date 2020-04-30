@@ -1,3 +1,10 @@
+## [1.4.4](https://github.com/zephyrmathias/next-ebs/compare/v1.4.3...v1.4.4) (2020-04-30)
+
+
+### Bug Fixes
+
+* add private repo ([b15f27d](https://github.com/zephyrmathias/next-ebs/commit/b15f27dae1feac9d00ea60b130381c40f5f45841))
+
 ## [1.4.3](https://github.com/zephyrmathias/next-ebs/compare/v1.4.2...v1.4.3) (2020-04-30)
 
 
