@@ -1,3 +1,10 @@
+## [1.4.6](https://github.com/zephyrmathias/next-ebs/compare/v1.4.5...v1.4.6) (2020-04-30)
+
+
+### Bug Fixes
+
+* single quote ([03dae1c](https://github.com/zephyrmathias/next-ebs/commit/03dae1c0778cbda8ac48a10b095a48733d736e58))
+
 ## [1.4.5](https://github.com/zephyrmathias/next-ebs/compare/v1.4.4...v1.4.5) (2020-04-30)
 
 
