@@ -1,3 +1,10 @@
+## [1.4.8](https://github.com/zephyrmathias/next-ebs/compare/v1.4.7...v1.4.8) (2020-04-30)
+
+
+### Bug Fixes
+
+* test remove package.json from github release ([22a4470](https://github.com/zephyrmathias/next-ebs/commit/22a4470189c4f9f33e5e739a1ef8331c5ca73824))
+
 ## [1.4.7](https://github.com/zephyrmathias/next-ebs/compare/v1.4.6...v1.4.7) (2020-04-30)
 
 
