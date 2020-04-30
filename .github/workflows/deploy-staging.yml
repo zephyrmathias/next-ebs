@@ -6,7 +6,7 @@ env:
   EB_APPLICATION_NAME: test whitespace
   EB_ENVIRONMENT_NAME: NextEbs-Staging
   AWS_REGION: ap-southeast-1
-  ZIP_FILE: staging-${{ github.sha }}.zip
+  ZIP_FILE: staging-${GITHUB_SHA::8}-${GITHUB_RUN_ID}.zip
 
 on:
   pull_request:
@@ -82,4 +82,4 @@ jobs:
           --description "description ${{ env.ZIP_FILE }}"
 
       - name: Deploy to Staging
-        run: aws elasticbeanstalk update-environment --environment-name NextEbs-Staging --version-label staging-${{ github.sha }}.zip
+        run: aws elasticbeanstalk update-environment --environment-name NextEbs-Staging --version-label ${{ env.ZIP_FILE }}
