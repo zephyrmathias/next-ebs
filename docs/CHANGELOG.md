@@ -1,3 +1,11 @@
+## [1.4.3](https://github.com/zephyrmathias/next-ebs/compare/v1.4.2...v1.4.3) (2020-04-30)
+
+
+### Bug Fixes
+
+* fix release.config test semver ([a398aff](https://github.com/zephyrmathias/next-ebs/commit/a398aff304cbae44815b257e8251740f307fc4d0))
+* test npm token ([69c1739](https://github.com/zephyrmathias/next-ebs/commit/69c173965f4636a625de3bcac43e12e3e0b4c3ce))
+
 ## [1.4.2](https://github.com/zephyrmathias/next-ebs/compare/v1.4.1...v1.4.2) (2020-04-30)
 
 
