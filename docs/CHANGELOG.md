@@ -1,3 +1,10 @@
+## [1.4.7](https://github.com/zephyrmathias/next-ebs/compare/v1.4.6...v1.4.7) (2020-04-30)
+
+
+### Bug Fixes
+
+* test [skip ci] ([d2a0a00](https://github.com/zephyrmathias/next-ebs/commit/d2a0a00a87c5cfcd528fbc396a29134938eaa28e))
+
 ## [1.4.6](https://github.com/zephyrmathias/next-ebs/compare/v1.4.5...v1.4.6) (2020-04-30)
 
 
