@@ -7,7 +7,7 @@ env:
   EB_APPLICATION_NAME: next-ebs
   EB_ENVIRONMENT_NAME: NextEbs-Prod
   AWS_REGION: ap-southeast-1
-  ZIP_FILE: production-${{ github.sha }}.zip
+  ZIP_FILE: production-${GITHUB_SHA::8}-${GITHUB_RUN_ID}.zip
   S3_KEY_PREFIX: production
 
 on:
@@ -16,32 +16,31 @@ on:
 
 jobs:
   ci:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js version 12.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12.x
+      - uses: actions/checkout@v2
+      - name: Use Node.js version 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
 
-    - name: Install Dependencies
-      run: npm ci
+      - name: Install Dependencies
+        run: npm ci
 
-    - name: Run build
-      run: make build
+      - name: Run build
+        run: make build
 
-    - name: Run test
-      env:
-       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-      run: make test
+      - name: Run test
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        run: make test
 
-    - name: Upload Built Artifact
-      uses: actions/upload-artifact@master
-      with:
-        name: built artifacts
-        path: .next
+      - name: Upload Built Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: built artifacts
+          path: .next
 
   cd:
     needs: ci
@@ -60,17 +59,17 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id:      ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region:             ${{ env.AWS_REGION }}
-          
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
       - name: Upload assets to S3 Bucket (CDN)
         run: |
           make CDN_BUCKET=${{ env.CDN_S3_BUCKET }} upload-assets
-    
+
       - name: Zip built files
         run: make DEPLOY_PKG_NAME=${{ env.ZIP_FILE }} zip-file
-      
+
       - name: Upload Zip file to S3
         run: make DEPLOY_PKG_NAME=${{ env.ZIP_FILE }} APP_S3_BUCKET=${{ env.APP_S3_BUCKET }} upload-zip-file
 
@@ -82,6 +81,6 @@ jobs:
           S3_KEY=${{ env.S3_KEY_PREFIX }}/${{ env.ZIP_FILE }} \
           DEPLOY_PKG_NAME=${{ env.ZIP_FILE }} \
           create-app-version
- 
+
       - name: Deploy to Production
         run: make EB_ENV_NAME=${{ env.EB_ENVIRONMENT_NAME }} DEPLOY_PKG_NAME=${{ env.ZIP_FILE }} deploy

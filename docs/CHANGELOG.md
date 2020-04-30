@@ -1,3 +1,62 @@
+## [1.4.8](https://github.com/zephyrmathias/next-ebs/compare/v1.4.7...v1.4.8) (2020-04-30)
+
+
+### Bug Fixes
+
+* test remove package.json from github release ([22a4470](https://github.com/zephyrmathias/next-ebs/commit/22a4470189c4f9f33e5e739a1ef8331c5ca73824))
+
+## [1.4.7](https://github.com/zephyrmathias/next-ebs/compare/v1.4.6...v1.4.7) (2020-04-30)
+
+
+### Bug Fixes
+
+* test [skip ci] ([d2a0a00](https://github.com/zephyrmathias/next-ebs/commit/d2a0a00a87c5cfcd528fbc396a29134938eaa28e))
+
+## [1.4.6](https://github.com/zephyrmathias/next-ebs/compare/v1.4.5...v1.4.6) (2020-04-30)
+
+
+### Bug Fixes
+
+* single quote ([03dae1c](https://github.com/zephyrmathias/next-ebs/commit/03dae1c0778cbda8ac48a10b095a48733d736e58))
+
+## [1.4.5](https://github.com/zephyrmathias/next-ebs/compare/v1.4.4...v1.4.5) (2020-04-30)
+
+
+### Bug Fixes
+
+* add '@semantic-release/npm' ([9102b9b](https://github.com/zephyrmathias/next-ebs/commit/9102b9ba7a607a26c7d113f69fabb57b1729b08d))
+
+## [1.4.4](https://github.com/zephyrmathias/next-ebs/compare/v1.4.3...v1.4.4) (2020-04-30)
+
+
+### Bug Fixes
+
+* add private repo ([b15f27d](https://github.com/zephyrmathias/next-ebs/commit/b15f27dae1feac9d00ea60b130381c40f5f45841))
+
+## [1.4.3](https://github.com/zephyrmathias/next-ebs/compare/v1.4.2...v1.4.3) (2020-04-30)
+
+
+### Bug Fixes
+
+* fix release.config test semver ([a398aff](https://github.com/zephyrmathias/next-ebs/commit/a398aff304cbae44815b257e8251740f307fc4d0))
+* test npm token ([69c1739](https://github.com/zephyrmathias/next-ebs/commit/69c173965f4636a625de3bcac43e12e3e0b4c3ce))
+
+## [1.4.2](https://github.com/zephyrmathias/next-ebs/compare/v1.4.1...v1.4.2) (2020-04-30)
+
+
+### Bug Fixes
+
+* **test:** test package.json version bump ([56076af](https://github.com/zephyrmathias/next-ebs/commit/56076affe9c013ca1853bc31908e1e222e5c9471))
+
+## [1.4.1](https://github.com/zephyrmathias/next-ebs/compare/v1.4.0...v1.4.1) (2020-04-29)
+
+
+### Bug Fixes
+
+* add github run id ([#13](https://github.com/zephyrmathias/next-ebs/issues/13)) ([484a9d1](https://github.com/zephyrmathias/next-ebs/commit/484a9d1cd8904ba204cb6ae1b9397727dff5ac06))
+* test release ([abe8b25](https://github.com/zephyrmathias/next-ebs/commit/abe8b253c709f918957c8c5b4878308fa46dbc83))
+* test remove semantic npm ([30e4aa8](https://github.com/zephyrmathias/next-ebs/commit/30e4aa8c706a00a4c22d70d64c18052a1490864e))
+
 # [1.4.0](https://github.com/zephyrmathias/next-ebs/compare/v1.3.6...v1.4.0) (2020-04-28)
 
 
