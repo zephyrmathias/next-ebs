@@ -1,6 +1,7 @@
 {
   "name": "next-ebs",
   "version": "1.4.3",
+  "private": true,
   "description": "",
   "main": "index.js",
   "scripts": {
