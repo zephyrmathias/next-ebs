@@ -1,3 +1,10 @@
+## [1.4.5](https://github.com/zephyrmathias/next-ebs/compare/v1.4.4...v1.4.5) (2020-04-30)
+
+
+### Bug Fixes
+
+* add '@semantic-release/npm' ([9102b9b](https://github.com/zephyrmathias/next-ebs/commit/9102b9ba7a607a26c7d113f69fabb57b1729b08d))
+
 ## [1.4.4](https://github.com/zephyrmathias/next-ebs/compare/v1.4.3...v1.4.4) (2020-04-30)
 
 
