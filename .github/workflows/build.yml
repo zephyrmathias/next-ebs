@@ -19,3 +19,8 @@ jobs:
     - run: npm ci
     - run: npm run build
     - run: npm test
+    
+    - name: test env on makefile
+    - env:
+        hello: 'hello variable'
+    - run: make test-makefile
