@@ -5,6 +5,9 @@ on:
     branches: [master]
   pull_request:
 
+env:
+  hello: 'hello from here'
+
 jobs:
   build:
 
@@ -21,6 +24,4 @@ jobs:
     - run: npm test
     
     - name: test env on makefile
-      env:
-        hello: 'hello variable'
       run: make test-makefile
