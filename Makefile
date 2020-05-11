@@ -28,5 +28,8 @@ create-app-version: ## Create Beanstalk Application Version Staging
 deploy: # Deploy new App Version to Beanstalk
 	@aws elasticbeanstalk update-environment --environment-name $(EB_ENV_NAME) --version-label "$(DEPLOY_PKG_NAME)"
 
+test-makefile:
+	@echo $(hello)
+
 help: ## Display this help screen
 	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
