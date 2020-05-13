@@ -13,6 +13,7 @@ jobs:
     - uses: actions/checkout@v2
   
     - name: Run Lighthouse on urls and validate with lighthouserc
+      uses: treosh/lighthouse-ci-action@v2
       with:
         urls: 'https://exterkamp.codes/'
         runs: 3
